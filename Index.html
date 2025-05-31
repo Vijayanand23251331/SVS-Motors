@@ -1,45 +1,398 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <title></title>
+    <meta charset="UTF-8">
+    <title>SVS MOTORS - Modern Car Garage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts for a modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1e3a5f;
+            --accent: #ffb400;
+            --background: #f5f8fa;
+            --white: #fff;
+            --shadow: 0 4px 24px rgba(30,58,95,0.13);
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            font-family: 'Montserrat', Arial, sans-serif;
+            background: var(--background);
+            color: var(--primary);
+        }
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            height: 60vh;
+            min-height: 400px;
+            background: url('https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(30,58,95,0.7);
+        }
+        .hero-content {
+            position: relative;
+            color: var(--white);
+            text-align: center;
+            z-index: 1;
+        }
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5em;
+            letter-spacing: 2px;
+        }
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 1em;
+        }
+        .hero-content .btn {
+            background: var(--accent);
+            color: var(--primary);
+            padding: 14px 36px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+            box-shadow: var(--shadow);
+        }
+        .hero-content .btn:hover {
+            background: #ffd166;
+        }
+        /* NAVIGATION */
+        nav {
+            width: 100%;
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.6em 2em;
+        }
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.4em;
+            color: var(--primary);
+            letter-spacing: 1px;
+        }
+        .nav-links a {
+            color: var(--primary);
+            text-decoration: none;
+            margin-left: 2em;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        /* MAIN CONTENT */
+        main {
+            max-width: 1100px;
+            margin: 40px auto 0 auto;
+            padding: 0 16px;
+        }
+        section {
+            margin-bottom: 60px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+            letter-spacing: 1px;
+        }
+        /* SERVICES */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 28px;
+        }
+        .service-card {
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            padding: 32px 22px;
+            text-align: center;
+            transition: transform 0.18s, box-shadow 0.18s;
+            cursor: pointer;
+            position: relative;
+        }
+        .service-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 8px 32px rgba(30,58,95,0.18);
+        }
+        .service-card h3 {
+            margin-bottom: 12px;
+            color: var(--primary);
+        }
+        .service-card p {
+            color: #555;
+            font-size: 1em;
+        }
+        /* MODAL */
+        .modal-bg {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0; top: 0; right: 0; bottom: 0;
+            background: rgba(30,58,95,0.85);
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-bg.active {
+            display: flex;
+        }
+        .modal {
+            background: var(--white);
+            border-radius: 14px;
+            padding: 32px 26px;
+            max-width: 420px;
+            width: 90%;
+            box-shadow: var(--shadow);
+            position: relative;
+            animation: fadeIn 0.4s;
+        }
+        .modal h3 {
+            margin-top: 0;
+        }
+        .modal .close {
+            position: absolute;
+            top: 18px;
+            right: 22px;
+            font-size: 1.5em;
+            color: var(--primary);
+            cursor: pointer;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        /* ABOUT & CONTACT */
+        .about-content, .contact-content {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 14px;
+            box-shadow: var(--shadow);
+            padding: 32px 24px;
+        }
+        .about-content p {
+            font-size: 1.1em;
+            color: #444;
+        }
+        .contact-content p, .contact-content a {
+            font-size: 1.08em;
+            color: #333;
+        }
+        .contact-content a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        .contact-content a:hover {
+            text-decoration: underline;
+        }
+        /* FOOTER */
+        .footer {
+            background: var(--primary);
+            color: var(--white);
+            text-align: center;
+            padding: 18px 0;
+            margin-top: 60px;
+            font-size: 1em;
+            letter-spacing: 1px;
+        }
+        /* RESPONSIVE */
+        @media (max-width: 700px) {
+            .hero-content h1 { font-size: 2.1em; }
+            .nav-container { flex-direction: column; padding: 0.6em 0.5em; }
+            .nav-links { margin-top: 0.7em; }
+            main { margin-top: 20px; }
+        }
+    </style>
 </head>
+<body>
 
-<body style="background-color:lightgrey;">
-    <h1 style="font-size:40px;">Heading 1</h1>
-    <p style="color:red;">I am RED </p>
-    <h2 style="font-family:verdana;">This is Verdana</h2>
-    <h3 style="text-align:center;">This is Center</h3>
-    <p style="font-family:courier;font-size:40px;">This is Courier</p>
-    <p><b>This is Bold</b></p>
-    <p><i>This is Italic</i></p>
-    <p>This is <sub>Subscript</sub></p>
-    <p>This is <sup>Superscript</sup></p>
-    <p>This is <mark>Mark</mark></p>
-    <p>This is a quote from xyz website</p>
-    <blockquote cite="https://www.xyz.com/who/index/html">For 60 years, WWF has worked to help people and nature thrive.
-        As the world's leading conservation organization, WWF works in nearly 100 countries. At every level, we
-        collaborate with people around the world to develop and deliver innovative solutions that protect communities,
-        wildlife, and the places in which they live.
-    </blockquote>
-    <p>The<abbr title="WORLD HEALTH ORGANISATION">WHO</abbr> is found in 1948</p>
-    <adress> Written by Vijayanand<br>Allwyn Colony<br>Kukatpally<br>Hyderabad<br>Telanagana</adress>
-    <img src="Shivaji Painting.jpg" width="220" height="277">
-    <p><cite>Shivaji Maharaj</cite> painting is painted on 1999</p>
-    <bdo dir="rtl">This will be written from right to left</bdo>
-    <!--This is a comment -->
-    <p>This a line to check the comment</p>
-    <!--Comment number 2-->
-    <h style="background-color:Tomato;">Tomato</h>
-    <h style="border: 2px solid tomato;">Background Tomato</h>
-    <h3 style="border: 2px solid dodgerblue;">This is Dodgerblue</h3>
-    <h4 style="background-color:rgb(255,99,71);">This is DARK</h4>
-    <h4 style="background-color:rgba(255,99,71,0.5);">This is Light</h4>
-    <h5 style="background-color:rgba(255,0,0,0);">This is Experiment</h5>
-    
+    <!-- HERO SECTION -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>SVS MOTORS</h1>
+            <p>Trusted Car Garage in Sardar Patel Nagar near JNTU Metro Station<br>
+            <strong>18 Years of Experience</strong></p>
+            <a href="#services" class="btn">View Our Services</a>
+        </div>
+    </div>
 
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo">SVS MOTORS</div>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
 
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- ABOUT SECTION -->
+        <section id="about">
+            <h2>About Us</h2>
+            <div class="about-content">
+                <p>
+                    Welcome to <strong>SVS MOTORS</strong>! Conveniently located in Sardar Patel Nagar near JNTU Metro Station, we have proudly served the Hyderabad community for <strong>18 years</strong>. Our garage is committed to delivering honest, reliable, and high-quality car repair and maintenance services. Whether it's routine maintenance or complex repairs, our skilled team ensures your vehicle is always in top condition.
+                </p>
+            </div>
+        </section>
 
+        <!-- SERVICES SECTION -->
+        <section id="services">
+            <h2>Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card" onclick="showModal(0)">
+                    <h3>General Car Repairs</h3>
+                    <p>All types of mechanical and electrical repairs for your vehicle.</p>
+                </div>
+                <div class="service-card" onclick="showModal(1)">
+                    <h3>Engine Diagnostics</h3>
+                    <p>Advanced diagnostics to quickly identify and fix engine issues.</p>
+                </div>
+                <div class="service-card" onclick="showModal(2)">
+                    <h3>Oil Change & Maintenance</h3>
+                    <p>Fast oil changes and routine maintenance for engine health.</p>
+                </div>
+                <div class="service-card" onclick="showModal(3)">
+                    <h3>Brake & Suspension</h3>
+                    <p>Brake inspection, repair, and suspension services for safety.</p>
+                </div>
+                <div class="service-card" onclick="showModal(4)">
+                    <h3>Battery Replacement</h3>
+                    <p>Testing and replacing batteries for reliable starts.</p>
+                </div>
+                <div class="service-card" onclick="showModal(5)">
+                    <h3>AC Repair & Service</h3>
+                    <p>Keep cool with our expert AC repair and servicing.</p>
+                </div>
+                <div class="service-card" onclick="showModal(6)">
+                    <h3>Wheel Alignment & Balancing</h3>
+                    <p>Precision alignment and balancing for smooth rides.</p>
+                </div>
+                <div class="service-card" onclick="showModal(7)">
+                    <h3>Car Washing & Detailing</h3>
+                    <p>Professional cleaning and detailing for a showroom shine.</p>
+                </div>
+                <div class="service-card" onclick="showModal(8)">
+                    <h3>Electrical Repairs</h3>
+                    <p>Fixing all electrical issues from lights to wiring.</p>
+                </div>
+                <div class="service-card" onclick="showModal(9)">
+                    <h3>Pre-Purchase Inspection</h3>
+                    <p>Comprehensive checks before you buy a used car.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODAL FOR SERVICE DETAILS -->
+        <div class="modal-bg" id="modalBg">
+            <div class="modal" id="modal">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h3 id="modalTitle"></h3>
+                <p id="modalDesc"></p>
+            </div>
+        </div>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <div class="contact-content">
+                <p><strong>Address:</strong> Sardar Patel Nagar, near JNTU Metro Station, Hyderabad</p>
+                <p><strong>Phone:</strong> <a href="tel:+919999999999">+91 99999 99999</a></p>
+                <p><strong>Email:</strong> <a href="mailto:info@svsmotors.com">info@svsmotors.com</a></p>
+                <p><strong>Working Hours:</strong> Mon-Sat: 9:00 AM - 8:00 PM</p>
+                <p>
+                    <a href="https://goo.gl/maps/your-map-link" target="_blank">View on Google Maps</a>
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <div class="footer">
+        &copy; 2025 SVS MOTORS. All rights reserved.
+    </div>
+
+    <script>
+        // Service details for modal
+        const serviceDetails = [
+            {
+                title: "General Car Repairs",
+                desc: "From minor fixes to major overhauls, our experts handle all types of car repairs using quality parts and the latest tools. We ensure your vehicle runs smoothly and safely."
+            },
+            {
+                title: "Engine Diagnostics",
+                desc: "We use advanced diagnostic equipment to quickly identify engine issues, saving you time and money. Our technicians will explain the problem and recommend the best solution."
+            },
+            {
+                title: "Oil Change & Maintenance",
+                desc: "Regular oil changes are crucial for engine health. We offer fast oil changes, fluid top-ups, and comprehensive maintenance checks to keep your car in top condition."
+            },
+            {
+                title: "Brake & Suspension",
+                desc: "We inspect and repair brakes, shock absorbers, and suspension systems to ensure your safety and comfort on the road."
+            },
+            {
+                title: "Battery Replacement",
+                desc: "We test, replace, and install batteries for all car models. Our team ensures your vehicle starts reliably every time."
+            },
+            {
+                title: "AC Repair & Service",
+                desc: "Stay cool with our AC repair and maintenance services. We diagnose leaks, recharge refrigerant, and fix faulty components for optimal cooling."
+            },
+            {
+                title: "Wheel Alignment & Balancing",
+                desc: "Proper alignment and balancing extend tire life and improve driving comfort. Our precision equipment ensures your wheels are perfectly aligned."
+            },
+            {
+                title: "Car Washing & Detailing",
+                desc: "We offer thorough car washing and detailing to keep your vehicle looking spotless, both inside and out."
+            },
+            {
+                title: "Electrical Repairs",
+                desc: "From lights to wiring, we troubleshoot and fix all electrical issues to ensure your car's systems work flawlessly."
+            },
+            {
+                title: "Pre-Purchase Inspection",
+                desc: "Buying a used car? Let our experts inspect it for hidden issues, so you can purchase with confidence."
+            }
+        ];
+        function showModal(idx) {
+            document.getElementById('modalTitle').textContent = serviceDetails[idx].title;
+            document.getElementById('modalDesc').textContent = serviceDetails[idx].desc;
+            document.getElementById('modalBg').classList.add('active');
+        }
+        function closeModal() {
+            document.getElementById('modalBg').classList.remove('active');
+        }
+        // Close modal on background click
+        document.getElementById('modalBg').onclick = function(e) {
+            if (e.target === this) closeModal();
+        }
+    </script>
 </body>
-
 </html>
