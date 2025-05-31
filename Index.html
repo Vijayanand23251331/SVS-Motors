@@ -23,7 +23,6 @@
             background: var(--background);
             color: var(--primary);
         }
-        /* HERO SECTION */
         .hero {
             position: relative;
             height: 60vh;
@@ -69,7 +68,6 @@
         .hero-content .btn:hover {
             background: #ffd166;
         }
-        /* NAVIGATION */
         nav {
             width: 100%;
             background: var(--white);
@@ -102,7 +100,6 @@
         .nav-links a:hover {
             color: var(--accent);
         }
-        /* MAIN CONTENT */
         main {
             max-width: 1100px;
             margin: 40px auto 0 auto;
@@ -117,7 +114,6 @@
             font-size: 2.2em;
             letter-spacing: 1px;
         }
-        /* SERVICES */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -145,7 +141,34 @@
             color: #555;
             font-size: 1em;
         }
-        /* MODAL */
+        .reviews-section {
+            background: var(--white);
+            border-radius: 14px;
+            box-shadow: var(--shadow);
+            padding: 36px 24px;
+            margin: 0 auto 60px auto;
+            max-width: 800px;
+        }
+        .reviews-list {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+        .review {
+            background: #f8fafc;
+            border-left: 5px solid var(--accent);
+            padding: 18px 22px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(30,58,95,0.06);
+            font-size: 1.08em;
+            position: relative;
+        }
+        .review .reviewer {
+            font-weight: bold;
+            color: var(--primary);
+            margin-top: 10px;
+            display: block;
+        }
         .modal-bg {
             display: none;
             position: fixed;
@@ -183,7 +206,6 @@
             from { opacity: 0; transform: translateY(30px);}
             to { opacity: 1; transform: translateY(0);}
         }
-        /* ABOUT & CONTACT */
         .about-content, .contact-content {
             max-width: 700px;
             margin: 0 auto;
@@ -207,7 +229,6 @@
         .contact-content a:hover {
             text-decoration: underline;
         }
-        /* FOOTER */
         .footer {
             background: var(--primary);
             color: var(--white);
@@ -217,12 +238,12 @@
             font-size: 1em;
             letter-spacing: 1px;
         }
-        /* RESPONSIVE */
         @media (max-width: 700px) {
             .hero-content h1 { font-size: 2.1em; }
             .nav-container { flex-direction: column; padding: 0.6em 0.5em; }
             .nav-links { margin-top: 0.7em; }
             main { margin-top: 20px; }
+            .reviews-section { padding: 22px 6px; }
         }
     </style>
 </head>
@@ -245,6 +266,7 @@
             <div class="nav-links">
                 <a href="#about">About</a>
                 <a href="#services">Services</a>
+                <a href="#reviews">Reviews</a>
                 <a href="#contact">Contact</a>
             </div>
         </div>
@@ -257,7 +279,8 @@
             <h2>About Us</h2>
             <div class="about-content">
                 <p>
-                    Welcome to <strong>SVS MOTORS</strong>! Conveniently located in Sardar Patel Nagar near JNTU Metro Station, we have proudly served the Hyderabad community for <strong>18 years</strong>. Our garage is committed to delivering honest, reliable, and high-quality car repair and maintenance services. Whether it's routine maintenance or complex repairs, our skilled team ensures your vehicle is always in top condition.
+                    Welcome to <strong>SVS MOTORS</strong>! Conveniently located at <strong>Plot #63, Sardar Patel Nagar, X Road, beside Community Hall, Nizampet, Hyderabad, Telangana 500090</strong>, we have proudly served the Hyderabad community for <strong>18 years</strong>. <br>
+                    Our garage is equipped with <strong>advanced lifts</strong> for thorough car inspections and <strong>state-of-the-art equipment</strong> for diagnostics and repairs. We also offer <strong>professional car painting</strong> services with high-quality finish. Whether it's routine maintenance or complex repairs, our skilled team ensures your vehicle is always in top condition.
                 </p>
             </div>
         </section>
@@ -306,6 +329,31 @@
                     <h3>Pre-Purchase Inspection</h3>
                     <p>Comprehensive checks before you buy a used car.</p>
                 </div>
+                <div class="service-card" onclick="showModal(10)">
+                    <h3>Car Painting</h3>
+                    <p>Professional painting services for a flawless finish.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- REVIEWS SECTION -->
+        <section id="reviews" class="reviews-section">
+            <h2>Customer Reviews</h2>
+            <div class="reviews-list">
+                <div class="review">
+                    Owner is very Humble<br>
+                    Best place to do car servicing
+                    <span class="reviewer">– Sravan Goud</span>
+                </div>
+                <div class="review">
+                    Had a great experience satisfied with their work
+                    <span class="reviewer">– Sai Nath</span>
+                </div>
+                <div class="review">
+                    Excellent Work and Meticulous in anything they take up.<br>
+                    Most sincere Workers and the Owner Sri Swamy Garu.
+                    <span class="reviewer">– Sathya Vittal</span>
+                </div>
             </div>
         </section>
 
@@ -322,12 +370,12 @@
         <section id="contact">
             <h2>Contact Us</h2>
             <div class="contact-content">
-                <p><strong>Address:</strong> Sardar Patel Nagar, near JNTU Metro Station, Hyderabad</p>
-                <p><strong>Phone:</strong> <a href="tel:+919999999999">+91 99999 99999</a></p>
+                <p><strong>Address:</strong> Plot #63, Sardar Patel Nagar, X Road, beside Community Hall, Nizampet, Hyderabad, Telangana 500090</p>
+                <p><strong>Phone:</strong> <a href="tel:+916305273434">6305273434</a></p>
                 <p><strong>Email:</strong> <a href="mailto:info@svsmotors.com">info@svsmotors.com</a></p>
                 <p><strong>Working Hours:</strong> Mon-Sat: 9:00 AM - 8:00 PM</p>
                 <p>
-                    <a href="https://goo.gl/maps/your-map-link" target="_blank">View on Google Maps</a>
+                    <a href="https://www.google.com/maps/place/Plot+%2363,+Sardar+Patel+Nagar,+X+Road,+beside+Community+Hall,+Nizampet,+Hyderabad,+Telangana+500090" target="_blank">View on Google Maps</a>
                 </p>
             </div>
         </section>
@@ -379,6 +427,10 @@
             {
                 title: "Pre-Purchase Inspection",
                 desc: "Buying a used car? Let our experts inspect it for hidden issues, so you can purchase with confidence."
+            },
+            {
+                title: "Car Painting",
+                desc: "We offer professional car painting services using advanced spraying and color-matching technology. Whether you need a touch-up or a full repaint, our team delivers a flawless finish with high-quality paints and attention to detail."
             }
         ];
         function showModal(idx) {
